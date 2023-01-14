@@ -5,4 +5,10 @@ const DB = new Sequelize("ecommerce", "root", "", {
   host: "localhost",
 });
 
+(async () => {
+  await DB.authenticate()
+    .then(() => console.log("database is connect 1"))
+    .catch((err) => console.log(err, "database not connect"));
+})();
+
 export default DB;

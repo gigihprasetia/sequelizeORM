@@ -8,10 +8,6 @@ dotenv.config();
 const port = process.env.PORT_ENV;
 const app = express();
 
-(async () => {
-  await DB.authenticate()
-    .then(() => console.log("database is connect 1"))
-    .catch((err) => console.log(err, "database not connect"));
-})();
+app.use(express.json());
 
 app.listen(port, () => console.log("running on port" + port));
