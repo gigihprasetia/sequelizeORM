@@ -6,11 +6,14 @@ import {
   getUserById,
   updateUser,
 } from "../controller/User.js";
+import { VerifyUser } from "../middleware/VerifyUser.js";
 
 const UserRouter = express.Router();
 
-UserRouter.get(`/users`, getAllUser);
-UserRouter.get(`/user/:id`, getUserById);
-UserRouter.post(`/createuser`, createUser);
-UserRouter.delete(`/deleteuser/:id`, deleteUser);
-UserRouter.patch(`/updateuser/:id`, updateUser);
+UserRouter.get(`/users`, VerifyUser, getAllUser);
+UserRouter.get(`/user/:id`, VerifyUser, getUserById);
+UserRouter.post(`/createuser`, VerifyUser, createUser);
+UserRouter.delete(`/deleteuser/:id`, VerifyUser, deleteUser);
+UserRouter.patch(`/updateuser/:id`, VerifyUser, updateUser);
+
+export default UserRouter;
